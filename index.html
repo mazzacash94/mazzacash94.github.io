@@ -3,149 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockchain Developer CV | NFT-Powered Resume</title>
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.9.0/dist/web3.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <title>Giovanni Maria Mazza • Blockchain Architect</title>
+    <meta name="description" content="On-chain CV of Giovanni Maria Mazza - Blockchain Architect & Solidity Engineer">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Ethers.js -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+    
     <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #888888;
+            --light-gray: #f5f5f5;
+            --accent: #0052ff;
+            --success: #00d395;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #6366f1;
-            --secondary: #a855f7;
-            --accent: #06b6d4;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --glass: rgba(255, 255, 255, 0.1);
-            --border: rgba(255, 255, 255, 0.2);
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--dark);
-            color: var(--light);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--black);
             overflow-x: hidden;
-            position: relative;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            opacity: 0.1;
+        /* Minimal Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
 
-        .floating-shapes {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
+        ::-webkit-scrollbar-track {
+            background: transparent;
         }
 
-        .shape {
-            position: absolute;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray);
+            border-radius: 3px;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-
-        /* Header */
-        header {
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            backdrop-filter: blur(20px);
-            background: var(--glass);
-            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
             transition: all 0.3s ease;
         }
 
-        nav {
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px var(--primary)); }
-            to { filter: drop-shadow(0 0 20px var(--secondary)); }
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             align-items: center;
         }
 
-        .nav-links a {
-            color: var(--light);
+        .nav-link {
+            color: var(--gray);
             text-decoration: none;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
             position: relative;
         }
 
-        .nav-links a::after {
+        .nav-link:hover {
+            color: var(--black);
+        }
+
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -4px;
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--accent);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-link:hover::after {
             width: 100%;
         }
 
-        .connect-wallet {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .connect-btn {
+            background: var(--black);
+            color: var(--white);
             border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            font-size: 0.95rem;
         }
 
-        .connect-wallet:hover {
+        .connect-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Hero Section */
@@ -153,255 +148,350 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 5rem 5%;
+            padding: 8rem 2rem 4rem;
             position: relative;
+            background: var(--white);
         }
 
-        .hero-content {
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -20%;
+            width: 60%;
+            height: 100%;
+            background: var(--bg-gradient);
+            opacity: 0.05;
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+
+        .hero-container {
             max-width: 1200px;
-            width: 100%;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 6rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero-text h1 {
-            font-size: 4rem;
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient 3s ease infinite;
-            background-size: 200% 200%;
+            animation: fadeInUp 0.8s ease;
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .typing-text {
+        .hero-role {
             font-size: 1.5rem;
-            color: var(--accent);
+            color: var(--gray);
+            font-weight: 300;
             margin-bottom: 2rem;
-            height: 2rem;
+            animation: fadeInUp 0.8s ease 0.1s both;
         }
 
-        .hero-cta {
+        .hero-bio {
+            font-size: 1.125rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--black);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .hero-actions {
             display: flex;
             gap: 1rem;
-            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
 
         .btn {
             padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
+            border-radius: 8px;
             font-weight: 600;
+            text-decoration: none;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.95rem;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 82, 255, 0.3);
         }
 
         .btn-secondary {
-            background: var(--glass);
-            color: var(--light);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        .btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
         }
 
-        .hero-visual {
-            position: relative;
-        }
-
+        /* NFT Card */
         .nft-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 2.5rem;
             position: relative;
             overflow: hidden;
-            transform: perspective(1000px) rotateY(-15deg);
-            transition: transform 0.6s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.8s ease 0.5s both;
+            transition: all 0.3s ease;
         }
 
         .nft-card:hover {
-            transform: perspective(1000px) rotateY(0deg);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
         }
 
         .nft-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--bg-gradient);
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .nft-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .nft-title {
+            font-weight: 700;
+            font-size: 1.125rem;
         }
 
         .nft-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
+            background: var(--success);
+            color: var(--white);
+            padding: 0.375rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contract-info {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contract-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .contract-address {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            word-break: break-all;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .contract-address:hover {
+            color: var(--accent);
+        }
+
+        .nft-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .nft-link {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.875rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .nft-link:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
         }
 
         /* Sections */
         section {
-            padding: 5rem 5%;
-            max-width: 1400px;
+            padding: 6rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
         }
 
-        /* Skills Grid */
-        .skills-grid {
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Skills */
+        .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
-        .skill-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 15px;
+        .skill-group {
+            background: var(--light-gray);
+            border-radius: 12px;
             padding: 2rem;
             transition: all 0.3s ease;
         }
 
-        .skill-card:hover {
+        .skill-group:hover {
             transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .skill-category {
-            font-size: 1.2rem;
+        .skill-group h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
             color: var(--accent);
-            margin-bottom: 1rem;
         }
 
-        .skill-item {
+        .skill-list {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .skill-bar {
-            width: 100px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            overflow: hidden;
+        .skill-tag {
+            background: var(--white);
+            padding: 0.375rem 0.875rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
         }
 
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 3px;
-            transition: width 1s ease;
-        }
-
-        /* Experience Timeline */
+        /* Timeline */
         .timeline {
             position: relative;
-            padding: 2rem 0;
+            padding-left: 3rem;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
+            left: 0;
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-            transform: translateX(-50%);
+            background: var(--light-gray);
         }
 
         .timeline-item {
             position: relative;
-            padding: 2rem;
-            width: calc(50% - 2rem);
-            margin-bottom: 2rem;
+            padding-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease forwards;
         }
 
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
 
-        .timeline-item:nth-child(even) {
-            left: calc(50% + 2rem);
-        }
-
-        .timeline-content {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: scale(1.05);
-            border-color: var(--primary);
-        }
-
-        .timeline-dot {
+        .timeline-item::before {
+            content: '';
             position: absolute;
-            top: 2rem;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            left: -3.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
             border-radius: 50%;
-            z-index: 1;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--light-gray);
         }
 
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: -10px;
+        .timeline-date {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
         }
 
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -10px;
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
         }
 
         /* Projects */
@@ -412,244 +502,291 @@
         }
 
         .project-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            overflow: hidden;
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
             transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--bg-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .project-header {
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
-        }
-
-        .project-title {
-            font-size: 1.5rem;
+        .project-name {
+            font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 1rem;
         }
 
         .tech-tag {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
+            background: var(--light-gray);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
         }
 
-        .project-links {
-            padding: 1rem 2rem;
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .achievement-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: scale(1.05);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-text {
+            font-weight: 600;
+        }
+
+        /* Contact */
+        .contact-container {
+            background: var(--black);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+        }
+
+        .contact-links {
             display: flex;
-            gap: 1rem;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
-        .project-link {
-            color: var(--accent);
+        .contact-link {
+            color: var(--white);
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: var(--primary);
-        }
-
-        /* Blockchain Section */
-        .blockchain-info {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contract-address {
-            font-family: 'Courier New', monospace;
-            background: rgba(99, 102, 241, 0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            word-break: break-all;
-            cursor: pointer;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             transition: all 0.3s ease;
         }
 
-        .contract-address:hover {
-            background: rgba(99, 102, 241, 0.2);
-        }
-
-        .blockchain-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 0.5rem;
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
         }
 
         /* Footer */
         footer {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid var(--border);
-            padding: 3rem 5%;
             text-align: center;
+            padding: 3rem 2rem;
+            color: var(--gray);
+            font-size: 0.875rem;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .social-link {
-            color: var(--light);
-            font-size: 1.5rem;
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Copy Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transform: translateY(100px);
+            opacity: 0;
             transition: all 0.3s ease;
+            z-index: 1000;
         }
 
-        .social-link:hover {
-            color: var(--primary);
-            transform: translateY(-5px);
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
 
-        /* Loading State */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive */
+        /* Mobile */
         @media (max-width: 768px) {
-            .hero-content {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-container {
                 grid-template-columns: 1fr;
-                text-align: center;
+                gap: 3rem;
             }
 
-            .hero-text h1 {
-                font-size: 3rem;
+            .hero-stats {
+                justify-content: space-between;
             }
 
-            .timeline::before {
-                left: 2rem;
+            .stat-value {
+                font-size: 2rem;
             }
 
-            .timeline-item {
-                width: calc(100% - 4rem);
-                left: 4rem !important;
-                text-align: left !important;
-            }
-
-            .timeline-dot {
-                left: -29px !important;
-                right: auto !important;
-            }
-
-            .blockchain-stats {
+            .projects-grid,
+            .contact-links {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation"></div>
-    <div class="floating-shapes">
-        <div class="shape" style="width: 300px; height: 300px; top: 10%; left: 10%;"></div>
-        <div class="shape" style="width: 200px; height: 200px; top: 70%; right: 10%; animation-delay: -5s;"></div>
-        <div class="shape" style="width: 150px; height: 150px; top: 40%; left: 50%; animation-delay: -10s;"></div>
-    </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Address copied!</div>
 
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">CV.NFT</div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">GM.</div>
             <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#blockchain">Blockchain</a>
-                <button class="connect-wallet" onclick="connectWallet()">
-                    <i class="fas fa-wallet"></i> Connect Wallet
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button class="connect-btn" onclick="connectWallet()" id="connectBtn">
+                    Connect Wallet
                 </button>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 id="hero-name">Loading...</h1>
-                <div class="typing-text">
-                    <span id="typed-text"></span>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Giovanni Maria Mazza</h1>
+                <div class="hero-role">Blockchain Architect & Solidity Engineer</div>
+                <p class="hero-bio">
+                    Passionate programmer and blockchain paradigm strong believer. 
+                    Building the future of finance with smart contracts, DeFi protocols, and Web3 solutions.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">27+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">$8K+</div>
+                        <div class="stat-label">Total Earnings</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">4+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
                 </div>
-                <p id="hero-bio">Fetching data from blockchain...</p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-code"></i> View Projects
+                
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Get in Touch
                     </a>
-                    <a href="#blockchain" class="btn btn-secondary">
-                        <i class="fas fa-cube"></i> Verify on Chain
+                    <a href="#projects" class="btn btn-secondary">
+                        <i class="fas fa-folder"></i> View Portfolio
                     </a>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="nft-card">
-                    <div class="nft-badge">NFT #1</div>
-                    <h3>Blockchain Developer CV</h3>
-                    <p>This resume lives on-chain as an NFT</p>
-                    <div style="margin-top: 2rem;">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=YOUR_CONTRACT_ADDRESS" alt="Contract QR" style="width: 150px; height: 150px; border-radius: 10px;">
+            
+            <div class="nft-card">
+                <div class="nft-header">
+                    <div class="nft-title">On-Chain Resume</div>
+                    <div class="nft-badge">NFT</div>
+                </div>
+                
+                <div class="contract-info">
+                    <div class="contract-label">Smart Contract</div>
+                    <div class="contract-address" onclick="copyAddress()" id="contractAddress">
+                        0x1234...5678
                     </div>
-                    <div style="margin-top: 1rem;">
-                        <a href="https://opensea.io/assets/ethereum/YOUR_CONTRACT_ADDRESS/1" target="_blank" class="btn btn-secondary" style="font-size: 0.9rem;">
-                            View on OpenSea
-                        </a>
-                    </div>
+                </div>
+                
+                <div class="nft-links">
+                    <a href="#" class="nft-link" id="etherscanLink" target="_blank">
+                        <i class="fas fa-cube"></i> Etherscan
+                    </a>
+                    <a href="#" class="nft-link" id="openseaLink" target="_blank">
+                        <i class="fas fa-ship"></i> OpenSea
+                    </a>
                 </div>
             </div>
         </div>
@@ -657,53 +794,194 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid" id="skills-container">
-            <div class="loading"></div>
+        <h2 class="section-title">Technical Stack</h2>
+        
+        <div class="skills-container">
+            <div class="skill-group">
+                <h3>Blockchain</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Solidity</span>
+                    <span class="skill-tag">Web3.js</span>
+                    <span class="skill-tag">Ethers.js</span>
+                    <span class="skill-tag">Hardhat</span>
+                    <span class="skill-tag">Truffle</span>
+                    <span class="skill-tag">IPFS</span>
+                </div>
+            </div>
+            
+            <div class="skill-group">
+                <h3>Smart Contracts</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">ERC-20</span>
+                    <span class="skill-tag">ERC-721</span>
+                    <span class="skill-tag">ERC-1155</span>
+                    <span class="skill-tag">DeFi Protocols</span>
+                    <span class="skill-tag">Staking Systems</span>
+                    <span class="skill-tag">Auditing</span>
+                </div>
+            </div>
+            
+            <div class="skill-group">
+                <h3>Development</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">APIs</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Experience Section -->
     <section id="experience">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="timeline" id="experience-container">
-            <div class="loading"></div>
+        <h2 class="section-title">Experience</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2021 - Present</div>
+                <div class="timeline-title">Blockchain Manager</div>
+                <div class="timeline-company">G-Brain & CRURATED</div>
+                <p>Leading blockchain development initiatives, managing smart contract architecture, and overseeing DeFi protocol implementations.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2022 - Present</div>
+                <div class="timeline-title">Blockchain Developer</div>
+                <div class="timeline-company">Blockchain Army</div>
+                <p>Developing custom smart contracts, multi-chain solutions, and providing technical support for blockchain operations.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2021 - 2022</div>
+                <div class="timeline-title">Freelance Blockchain Developer</div>
+                <div class="timeline-company">Upwork - Rising Talent</div>
+                <p>Completed 27+ projects with 100% success rate, earning $8K+ while building DeFi protocols, NFT platforms, and Web3 integrations.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2020 - 2021</div>
+                <div class="timeline-title">Blockchain Development Student</div>
+                <div class="timeline-company">start2impact</div>
+                <p>Intensive blockchain development program, earning Junior Blockchain Developer certification.</p>
+            </div>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
         <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid" id="projects-container">
-            <div class="loading"></div>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-name">Galaxy Games</div>
+                <div class="project-desc">Multi-chain staking platform with custom ERC20 token, supporting 2 chains and 4 pools. Implemented point attribution system and audit corrections.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Solidity</span>
+                    <span class="tech-tag">Multi-chain</span>
+                    <span class="tech-tag">Staking</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-name">Dextools NFT Collection</div>
+                <div class="project-desc">Generated 5,000 unique NFTs from 15 components with custom smart contract and integrated minting page.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">ERC-721</span>
+                    <span class="tech-tag">Generative Art</span>
+                    <span class="tech-tag">Web3</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-name">Wine Protocol</div>
+                <div class="project-desc">Custom NFT and staking smart contracts with full frontend integration for wine-backed digital assets.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">NFT</span>
+                    <span class="tech-tag">Staking</span>
+                    <span class="tech-tag">DeFi</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-name">Smulips Ecosystem</div>
+                <div class="project-desc">Complete NFT ecosystem featuring custom NFT contract, raffle system, evolve mechanics, and staking functionality.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Gamification</span>
+                    <span class="tech-tag">Smart Contracts</span>
+                    <span class="tech-tag">Frontend</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-name">INFT Platform</div>
+                <div class="project-desc">Innovative staking contract with NFT renting functionality, enabling new DeFi use cases.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">DeFi</span>
+                    <span class="tech-tag">NFT Renting</span>
+                    <span class="tech-tag">Innovation</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-name">Army Token</div>
+                <div class="project-desc">Custom token smart contract with proprietary platform development and continuous technical support.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">ERC-20</span>
+                    <span class="tech-tag">Platform</span>
+                    <span class="tech-tag">Web3</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Blockchain Section -->
-    <section id="blockchain">
-        <h2 class="section-title">Blockchain Verification</h2>
-        <div class="blockchain-info">
-            <h3>Smart Contract Details</h3>
-            <div class="contract-address" onclick="copyAddress()">
-                <i class="fas fa-copy"></i> <span id="contract-address">0x...</span>
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2 class="section-title">Achievements</h2>
+        
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🏆</div>
+                <div class="achievement-text">Rising Talent on Upwork</div>
             </div>
-            <div class="blockchain-stats">
-                <div class="stat-item">
-                    <div class="stat-value" id="last-update">--</div>
-                    <div class="stat-label">Last Updated</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="total-views">--</div>
-                    <div class="stat-label">Total Views</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="network">--</div>
-                    <div class="stat-label">Network</div>
-                </div>
+            
+            <div class="achievement-card">
+                <div class="achievement-icon">🎓</div>
+                <div class="achievement-text">Certified Blockchain Developer</div>
             </div>
-            <div style="margin-top: 2rem;">
-                <a href="#" id="etherscan-link" target="_blank" class="btn btn-primary">
-                    <i class="fas fa-external-link-alt"></i> View on Etherscan
+            
+            <div class="achievement-card">
+                <div class="achievement-icon">💯</div>
+                <div class="achievement-text">100% Job Success Rate</div>
+            </div>
+            
+            <div class="achievement-card">
+                <div class="achievement-icon">🚀</div>
+                <div class="achievement-text">27+ Projects Delivered</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <h2 class="contact-title">Let's Build Something Amazing</h2>
+            <p class="contact-subtitle">Always open to discussing new projects and opportunities</p>
+            
+            <div class="contact-links">
+                <a href="https://github.com/mazzacash94" class="contact-link" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com/in/mazzacash" class="contact-link" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://www.upwork.com/freelancers/~0144697d01144f59fd" class="contact-link" target="_blank">
+                    <i class="fas fa-briefcase"></i> Upwork
+                </a>
+                <a href="mailto:gianmariamazza94@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> Email
                 </a>
             </div>
         </div>
@@ -711,630 +989,105 @@
 
     <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="#" class="social-link" id="github-link"><i class="fab fa-github"></i></a>
-            <a href="#" class="social-link" id="linkedin-link"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-link" id="twitter-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link" id="email-link"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p>&copy; 2024 Blockchain CV NFT. Powered by Smart Contracts.</p>
+        <p>© 2024 Giovanni Maria Mazza • Built with Smart Contracts</p>
     </footer>
 
     <script>
         // Configuration
-        const CONTRACT_ADDRESS = 'YOUR_CONTRACT_ADDRESS'; // Inserisci qui l'indirizzo del contratto
-        const CONTRACT_ABI = [
-            // Inserisci qui l'ABI del contratto (puoi generarlo da Remix o Hardhat)
-            // Per ora uso un ABI semplificato
-            {
-                "inputs": [],
-                "name": "fullName",
-                "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "title",
-                "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "bio",
-                "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "github",
-                "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "linkedin",
-                "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "twitter",
-                "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "email",
-                "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "getExperienceCount",
-                "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [{"internalType": "uint256", "name": "index", "type": "uint256"}],
-                "name": "getExperience",
-                "outputs": [
-                    {
-                        "components": [
-                            {"internalType": "string", "name": "company", "type": "string"},
-                            {"internalType": "string", "name": "role", "type": "string"},
-                            {"internalType": "string", "name": "startDate", "type": "string"},
-                            {"internalType": "string", "name": "endDate", "type": "string"},
-                            {"internalType": "string", "name": "description", "type": "string"},
-                            {"internalType": "string[]", "name": "techStack", "type": "string[]"}
-                        ],
-                        "internalType": "struct DeveloperCV.Experience",
-                        "name": "",
-                        "type": "tuple"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "getProjectCount",
-                "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [{"internalType": "uint256", "name": "index", "type": "uint256"}],
-                "name": "getProject",
-                "outputs": [
-                    {
-                        "components": [
-                            {"internalType": "string", "name": "name", "type": "string"},
-                            {"internalType": "string", "name": "description", "type": "string"},
-                            {"internalType": "string", "name": "githubUrl", "type": "string"},
-                            {"internalType": "string", "name": "liveUrl", "type": "string"},
-                            {"internalType": "string[]", "name": "technologies", "type": "string[]"},
-                            {"internalType": "bool", "name": "isActive", "type": "bool"}
-                        ],
-                        "internalType": "struct DeveloperCV.Project",
-                        "name": "",
-                        "type": "tuple"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "getSkillCategoryCount",
-                "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [{"internalType": "uint256", "name": "index", "type": "uint256"}],
-                "name": "getSkillCategory",
-                "outputs": [
-                    {
-                        "components": [
-                            {"internalType": "string", "name": "category", "type": "string"},
-                            {"internalType": "string[]", "name": "skills", "type": "string[]"},
-                            {"internalType": "uint8[]", "name": "proficiencyLevels", "type": "uint8[]"}
-                        ],
-                        "internalType": "struct DeveloperCV.SkillCategory",
-                        "name": "",
-                        "type": "tuple"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ];
+        const CONTRACT_ADDRESS = '0x742d35Cc6634C0532925a3b844Bc9e7595f00000'; // Replace with your deployed contract
+        const CHAIN_ID = 1; // 1 = Mainnet, 11155111 = Sepolia
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            setupScrollEffects();
+            updateContractInfo();
+        });
 
-        let web3;
-        let contract;
-        let userAccount;
-
-        // Initialize Web3
-        async function initWeb3() {
-            // Per demo, usa dati mock se non c'è connessione
-            if (typeof window.ethereum === 'undefined') {
-                console.log('MetaMask not found, using demo data');
-                loadDemoData();
-                return;
-            }
-
-            try {
-                web3 = new Web3(window.ethereum);
-                contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
-                await loadDataFromContract();
-            } catch (error) {
-                console.error('Error initializing Web3:', error);
-                loadDemoData();
-            }
+        // Scroll effects
+        function setupScrollEffects() {
+            const navbar = document.getElementById('navbar');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScroll = currentScroll;
+            });
         }
 
-        // Connect Wallet
+        // Update contract info
+        function updateContractInfo() {
+            const shortAddress = `${CONTRACT_ADDRESS.slice(0, 6)}...${CONTRACT_ADDRESS.slice(-4)}`;
+            document.getElementById('contractAddress').textContent = shortAddress;
+            
+            // Set explorer links
+            const explorerUrl = CHAIN_ID === 1 
+                ? `https://etherscan.io/address/${CONTRACT_ADDRESS}`
+                : `https://sepolia.etherscan.io/address/${CONTRACT_ADDRESS}`;
+            
+            document.getElementById('etherscanLink').href = explorerUrl;
+            document.getElementById('openseaLink').href = 
+                `https://opensea.io/assets/ethereum/${CONTRACT_ADDRESS}/1`;
+        }
+
+        // Copy address
+        function copyAddress() {
+            navigator.clipboard.writeText(CONTRACT_ADDRESS);
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Connect wallet
         async function connectWallet() {
             if (typeof window.ethereum === 'undefined') {
-                alert('Please install MetaMask to connect your wallet!');
+                alert('Please install MetaMask!');
                 return;
             }
-
+            
             try {
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                userAccount = accounts[0];
-                document.querySelector('.connect-wallet').innerHTML = 
-                    `<i class="fas fa-check-circle"></i> ${userAccount.slice(0, 6)}...${userAccount.slice(-4)}`;
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                const account = accounts[0];
+                document.getElementById('connectBtn').textContent = 
+                    `${account.slice(0, 6)}...${account.slice(-4)}`;
+                
+                // Optional: Load contract data
+                loadContractData();
             } catch (error) {
                 console.error('Error connecting wallet:', error);
             }
         }
 
-        // Load data from contract
-        async function loadDataFromContract() {
-            try {
-                // Load personal info
-                const fullName = await contract.methods.fullName().call();
-                const title = await contract.methods.title().call();
-                const bio = await contract.methods.bio().call();
-                const github = await contract.methods.github().call();
-                const linkedin = await contract.methods.linkedin().call();
-                const twitter = await contract.methods.twitter().call();
-                const email = await contract.methods.email().call();
-
-                // Update UI
-                document.getElementById('hero-name').textContent = fullName;
-                document.getElementById('hero-bio').textContent = bio;
-                
-                // Update social links
-                if (github) document.getElementById('github-link').href = github;
-                if (linkedin) document.getElementById('linkedin-link').href = linkedin;
-                if (twitter) document.getElementById('twitter-link').href = twitter;
-                if (email) document.getElementById('email-link').href = `mailto:${email}`;
-
-                // Initialize typing animation
-                new Typed('#typed-text', {
-                    strings: [title, 'Smart Contract Developer', 'DeFi Engineer', 'Web3 Builder'],
-                    typeSpeed: 50,
-                    backSpeed: 30,
-                    loop: true
-                });
-
-                // Load skills
-                await loadSkills();
-                
-                // Load experience
-                await loadExperience();
-                
-                // Load projects
-                await loadProjects();
-
-                // Update blockchain info
-                updateBlockchainInfo();
-
-            } catch (error) {
-                console.error('Error loading contract data:', error);
-                loadDemoData();
-            }
-        }
-
-        // Load skills from contract
-        async function loadSkills() {
-            const skillsContainer = document.getElementById('skills-container');
-            skillsContainer.innerHTML = '';
-
-            try {
-                const count = await contract.methods.getSkillCategoryCount().call();
-                
-                for (let i = 0; i < count; i++) {
-                    const skillCategory = await contract.methods.getSkillCategory(i).call();
-                    
-                    const skillCard = document.createElement('div');
-                    skillCard.className = 'skill-card';
-                    
-                    let skillsHTML = `<h3 class="skill-category">${skillCategory.category}</h3>`;
-                    
-                    for (let j = 0; j < skillCategory.skills.length; j++) {
-                        const skill = skillCategory.skills[j];
-                        const level = skillCategory.proficiencyLevels[j];
-                        
-                        skillsHTML += `
-                            <div class="skill-item">
-                                <span>${skill}</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: ${level * 10}%"></div>
-                                </div>
-                            </div>
-                        `;
-                    }
-                    
-                    skillCard.innerHTML = skillsHTML;
-                    skillsContainer.appendChild(skillCard);
-                }
-            } catch (error) {
-                console.error('Error loading skills:', error);
-            }
-        }
-
-        // Load experience from contract
-        async function loadExperience() {
-            const experienceContainer = document.getElementById('experience-container');
-            experienceContainer.innerHTML = '';
-
-            try {
-                const count = await contract.methods.getExperienceCount().call();
-                
-                for (let i = 0; i < count; i++) {
-                    const experience = await contract.methods.getExperience(i).call();
-                    
-                    const timelineItem = document.createElement('div');
-                    timelineItem.className = 'timeline-item';
-                    
-                    timelineItem.innerHTML = `
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>${experience.role}</h3>
-                            <h4 style="color: var(--accent); margin: 0.5rem 0;">${experience.company}</h4>
-                            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">
-                                ${experience.startDate} - ${experience.endDate}
-                            </p>
-                            <p style="margin: 1rem 0;">${experience.description}</p>
-                            <div class="project-tech">
-                                ${experience.techStack.map(tech => 
-                                    `<span class="tech-tag">${tech}</span>`
-                                ).join('')}
-                            </div>
-                        </div>
-                    `;
-                    
-                    experienceContainer.appendChild(timelineItem);
-                }
-            } catch (error) {
-                console.error('Error loading experience:', error);
-            }
-        }
-
-        // Load projects from contract
-        async function loadProjects() {
-            const projectsContainer = document.getElementById('projects-container');
-            projectsContainer.innerHTML = '';
-
-            try {
-                const count = await contract.methods.getProjectCount().call();
-                
-                for (let i = 0; i < count; i++) {
-                    const project = await contract.methods.getProject(i).call();
-                    
-                    const projectCard = document.createElement('div');
-                    projectCard.className = 'project-card';
-                    
-                    projectCard.innerHTML = `
-                        <div class="project-header">
-                            <h3 class="project-title">${project.name}</h3>
-                            ${project.isActive ? '<span style="color: #10b981; font-size: 0.9rem;">● Active</span>' : ''}
-                            <p style="margin-top: 1rem; color: rgba(255,255,255,0.8);">
-                                ${project.description}
-                            </p>
-                            <div class="project-tech">
-                                ${project.technologies.map(tech => 
-                                    `<span class="tech-tag">${tech}</span>`
-                                ).join('')}
-                            </div>
-                        </div>
-                        <div class="project-links">
-                            ${project.githubUrl ? 
-                                `<a href="${project.githubUrl}" target="_blank" class="project-link">
-                                    <i class="fab fa-github"></i> Code
-                                </a>` : ''
-                            }
-                            ${project.liveUrl ? 
-                                `<a href="${project.liveUrl}" target="_blank" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i> Demo
-                                </a>` : ''
-                            }
-                        </div>
-                    `;
-                    
-                    projectsContainer.appendChild(projectCard);
-                }
-            } catch (error) {
-                console.error('Error loading projects:', error);
-            }
-        }
-
-        // Update blockchain info
-        function updateBlockchainInfo() {
-            document.getElementById('contract-address').textContent = CONTRACT_ADDRESS;
-            document.getElementById('last-update').textContent = new Date().toLocaleDateString();
-            document.getElementById('total-views').textContent = Math.floor(Math.random() * 1000) + 500;
-            document.getElementById('network').textContent = 'Ethereum';
-            document.getElementById('etherscan-link').href = `https://etherscan.io/address/${CONTRACT_ADDRESS}`;
-        }
-
-        // Copy contract address
-        function copyAddress() {
-            navigator.clipboard.writeText(CONTRACT_ADDRESS);
-            alert('Contract address copied to clipboard!');
-        }
-
-        // Load demo data
-        function loadDemoData() {
-            // Demo data for when contract is not available
-            document.getElementById('hero-name').textContent = 'Mario Rossi';
-            document.getElementById('hero-bio').textContent = 'Blockchain Developer specializzato in Smart Contracts, DeFi e Web3. Costruisco il futuro decentralizzato, un blocco alla volta.';
+        // Load contract data (optional)
+        async function loadContractData() {
+            if (!window.ethereum) return;
             
-            // Initialize typing animation
-            new Typed('#typed-text', {
-                strings: ['Blockchain Developer', 'Smart Contract Engineer', 'DeFi Specialist', 'Web3 Builder'],
-                typeSpeed: 50,
-                backSpeed: 30,
-                loop: true
-            });
-
-            // Demo skills
-            const skillsHTML = `
-                <div class="skill-card">
-                    <h3 class="skill-category">Blockchain</h3>
-                    <div class="skill-item">
-                        <span>Solidity</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Web3.js/Ethers.js</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Hardhat/Truffle</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3 class="skill-category">Frontend</h3>
-                    <div class="skill-item">
-                        <span>React.js</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>TypeScript</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Next.js</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3 class="skill-category">Backend</h3>
-                    <div class="skill-item">
-                        <span>Node.js</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>IPFS</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 70%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span>GraphQL</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('skills-container').innerHTML = skillsHTML;
-
-            // Demo experience
-            const experienceHTML = `
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Senior Blockchain Developer</h3>
-                        <h4 style="color: var(--accent); margin: 0.5rem 0;">DeFi Protocol XYZ</h4>
-                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">
-                            2022 - Present
-                        </p>
-                        <p style="margin: 1rem 0;">
-                            Lead developer per un protocollo DeFi con TVL di $50M+. 
-                            Sviluppo smart contracts per lending, staking e governance.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Solidity</span>
-                            <span class="tech-tag">Hardhat</span>
-                            <span class="tech-tag">OpenZeppelin</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Blockchain Developer</h3>
-                        <h4 style="color: var(--accent); margin: 0.5rem 0;">NFT Marketplace Inc.</h4>
-                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">
-                            2021 - 2022
-                        </p>
-                        <p style="margin: 1rem 0;">
-                            Sviluppo di smart contracts ERC-721 e ERC-1155 per marketplace NFT.
-                            Implementazione di royalties on-chain e meccanismi di auction.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Solidity</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">IPFS</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('experience-container').innerHTML = experienceHTML;
-
-            // Demo projects
-            const projectsHTML = `
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">DeFi Yield Aggregator</h3>
-                        <span style="color: #10b981; font-size: 0.9rem;">● Active</span>
-                        <p style="margin-top: 1rem; color: rgba(255,255,255,0.8);">
-                            Protocollo che ottimizza automaticamente i rendimenti attraverso multiple piattaforme DeFi
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Solidity</span>
-                            <span class="tech-tag">Chainlink</span>
-                            <span class="tech-tag">React</span>
-                        </div>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> Code
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Demo
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">NFT Staking Platform</h3>
-                        <p style="margin-top: 1rem; color: rgba(255,255,255,0.8);">
-                            Piattaforma per lo staking di NFT con rewards in token nativi
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Solidity</span>
-                            <span class="tech-tag">OpenZeppelin</span>
-                            <span class="tech-tag">Hardhat</span>
-                        </div>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> Code
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">DAO Governance System</h3>
-                        <p style="margin-top: 1rem; color: rgba(255,255,255,0.8);">
-                            Sistema di governance on-chain con proposals e voting mechanism
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Solidity</span>
-                            <span class="tech-tag">Governor</span>
-                            <span class="tech-tag">Timelock</span>
-                        </div>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> Code
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Demo
-                        </a>
-                    </div>
-                </div>
-            `;
-            document.getElementById('projects-container').innerHTML = projectsHTML;
-
-            updateBlockchainInfo();
-        }
-
-        // Initialize on page load
-        window.addEventListener('load', () => {
-            initWeb3();
-            
-            // Animate skill bars on scroll
-            const observerOptions = {
-                threshold: 0.5,
-                rootMargin: '0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const progressBars = entry.target.querySelectorAll('.skill-progress');
-                        progressBars.forEach(bar => {
-                            const width = bar.style.width;
-                            bar.style.width = '0';
-                            setTimeout(() => {
-                                bar.style.width = width;
-                            }, 100);
-                        });
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe skill cards
-            setTimeout(() => {
-                document.querySelectorAll('.skill-card').forEach(card => {
-                    observer.observe(card);
-                });
-            }, 1000);
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(15, 23, 42, 0.9)';
-            } else {
-                header.style.background = 'var(--glass)';
+            try {
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
+                
+                // Contract ABI (minimal)
+                const abi = [
+                    "function getFullCV() view returns (tuple(string,string,string,string,uint256,uint256,uint256), tuple(string,string,string,string), string[], string[], string[], string[])"
+                ];
+                
+                const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
+                
+                // Load data
+                const data = await contract.getFullCV();
+                console.log('Contract data loaded:', data);
+                
+                // Update UI with contract data if needed
+            } catch (error) {
+                console.log('Using static data');
             }
-        });
+        }
     </script>
 </body>
 </html>
