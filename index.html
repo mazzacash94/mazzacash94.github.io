@@ -784,7 +784,7 @@
                     <a href="https://snowtrace.io/address/0x7483c70e94db5c94dac8dbd404e97d11700391b8" class="nft-link" id="etherscanLink" target="_blank">
                         <i class="fas fa-cube"></i> Snowtrace
                     </a>
-                    <a href="https://opensea.io/item/avalanche/0x7483c70e94db5c94dac8dbd404e97d11700391b8/1" class="nft-link" id="openseaLink" target="_blank">
+                    <a href="#" class="nft-link" id="openseaLink" target="_blank">
                         <i class="fas fa-ship"></i> OpenSea
                     </a>
                 </div>
@@ -994,7 +994,7 @@
 
     <script>
         // Configuration
-        const CONTRACT_ADDRESS = '0x742d35Cc6634C0532925a3b844Bc9e7595f00000'; // Replace with your deployed contract
+        const CONTRACT_ADDRESS = '0x7483c70E94db5C94dAC8dBD404E97d11700391B8'; // Replace with your deployed contract
         const CHAIN_ID = 1; // 1 = Mainnet, 11155111 = Sepolia
         
         // Initialize
@@ -1028,12 +1028,12 @@
             
             // Set explorer links
             const explorerUrl = CHAIN_ID === 1 
-                ? `https://etherscan.io/address/${CONTRACT_ADDRESS}`
-                : `https://sepolia.etherscan.io/address/${CONTRACT_ADDRESS}`;
+                ? `https://testnet.snowtrace.io/address/${CONTRACT_ADDRESS}`
+                : `https://testnet.snowtrace.io/address/${CONTRACT_ADDRESS}`;
             
             document.getElementById('etherscanLink').href = explorerUrl;
             document.getElementById('openseaLink').href = 
-                `https://opensea.io/assets/ethereum/${CONTRACT_ADDRESS}/1`;
+                `https://opensea.io/assets/avalanche/${CONTRACT_ADDRESS}/1`;
         }
 
         // Copy address
